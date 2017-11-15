@@ -4,6 +4,7 @@ import com.alibaba.dingtalk.openapi.demo.Env;
 import com.alibaba.dingtalk.openapi.demo.OApiException;
 import com.alibaba.dingtalk.openapi.demo.utils.FileUtils;
 import com.alibaba.dingtalk.openapi.demo.utils.HttpHelper;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.oapi.lib.aes.DingTalkJsApiSingnature;
 import com.dingtalk.open.client.ServiceFactory;
@@ -13,6 +14,8 @@ import com.dingtalk.open.client.api.service.corp.JsapiService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * AccessToken和jsticket的获取封装
@@ -145,8 +148,18 @@ public class AuthHelper {
         } catch (OApiException e) {
             e.printStackTrace();
         }
-        String configValue = "{jsticket:'" + ticket + "',signature:'" + signature + "',nonceStr:'" + nonceStr + "',timeStamp:'"
-                + timeStamp + "',corpId:'" + Env.CORP_ID + "',agentid:'" + agentid + "'}";
+//        String configValue = "{jsticket:'" + ticket + "',signature:'" + signature + "',nonceStr:'" + nonceStr + "',timeStamp:'"
+//                + timeStamp + "',corpId:'" + Env.CORP_ID + "',agentid:'" + agentid + "'}";
+
+        Map<String,Object> preJson = new HashMap<String,Object>();
+        preJson.put("jsticket",ticket);
+        preJson.put("signature",signature);
+        preJson.put("nonceStr",nonceStr);
+        preJson.put("timeStamp",timeStamp);
+        preJson.put("corpId",Env.CORP_ID);
+        preJson.put("agentid",agentid);
+        String configValue = JSON.toJSONString(preJson);
+
         System.out.println(configValue);
         return configValue;
     }

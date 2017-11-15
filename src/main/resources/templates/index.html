@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello</title>
+    <script th:inline="javascript">
+        var config = [[${config}]];
+        var _config = eval('(' + config + ')');
+    </script>
+    <script th:src="@{/js/zepto.min.js}"></script>
+    <script th:src="@{http://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js}"></script>
+    <script th:src="@{/js/logger.js}"></script>
+    <script th:src="@{/js/demo.js}"></script>
+
+</head>
+<body>
+    <h1 th:inline="text">hello</h1>
+    <!--/*@thymesVar id="test" type="java.lang.String"*/-->
+    <p th:text="${test}"></p>
+    username:<div id="userName" style="display:inline-block"></div>
+</body>
+</html>

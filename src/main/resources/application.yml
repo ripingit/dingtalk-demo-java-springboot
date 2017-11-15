@@ -10,3 +10,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
