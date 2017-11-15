@@ -1,0 +1,12 @@
+server:
+  port: 8866
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dingtalk?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: well1995
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
