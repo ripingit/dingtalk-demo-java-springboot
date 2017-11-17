@@ -87,6 +87,7 @@ dd.ready(function() {
 			// alert('authcode: ' + info.code);
 			// alert(_config.corpId);
 			$.ajax({
+                async : false,
 				url : 'userinfo?code=' + info.code + '&corpid='
 						+ _config.corpId,
 				type : 'GET',
@@ -96,6 +97,12 @@ dd.ready(function() {
 
 					document.getElementById("userName").innerHTML = info.name;
 					document.getElementById("userId").innerHTML = info.userid;
+
+					$.ajax({
+                        async : false,
+						url : 'saveUserId?userid=' + info.userid,
+						type: 'POST'
+					});
 					
 					// 图片
 					if(info.avatar.length != 0){
